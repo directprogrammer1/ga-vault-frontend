@@ -1,0 +1,212 @@
+* { box-sizing: border-box; }
+:root {
+    --sidebar-w: clamp(60px, 27vw, 130px);
+    --accent: #00ccff;
+    --first: rgb(255, 196, 0);
+    --third: rgb(177, 107, 61);
+    --second: rgb(204, 204, 204);
+    --locked-accent: gray;
+}
+body {
+    background: #1a1a1a;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: "Oxanium"
+}
+html {
+    width: 100%;
+    height: 100%
+}
+main {
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+}
+.content-box {
+    border-radius: 5px;
+    padding: 8px;
+    background: #1e1e1e;
+}
+.sidebar {
+    max-width: 130px;
+    width: var(--sidebar-w);
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    max-height: calc(100vh - (10px * 2));
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px
+}
+.content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-left: calc(var(--sidebar-w) + 10px);
+    gap: 10px
+}
+.main-content {
+    flex: 1;
+    min-width: 0;
+    max-height: calc(50% - 10px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px
+}
+span, h1, h2, h3, h4, h5, h6, a, button, p {
+    color: white
+}
+.title {
+    font-size: 18px;
+    margin: 8px
+}
+button {
+    border: none;
+    outline: none;
+    transform: none;
+    border-radius: 5px
+}
+.tab {
+    background: #292929;
+    width: 75%;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    box-shadow: none;
+    transition: background 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 11.5px
+}
+.tab:hover {
+    background: #2e2e2e;
+}
+.icon {
+    stroke-width: 1.7px;
+}
+.tab.selected {
+    background: var(--accent);
+    color: #131313;
+    box-shadow: 0px 0px 15px var(--accent)
+}
+.noscript {
+    position: absolute;
+    z-index: 20;
+    background-color: rgba(255, 43, 43, 0.685);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 0 0px 10px rgba(255, 43, 43, 0.308);
+}
+.noscript span {
+    margin-top: 3px
+}
+.ns-container {
+    width: calc(100% - 10px);
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    margin-top: 15px
+}
+.settings {
+    width: 60%;
+    font-size: 10.5px;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 25px
+}
+.boxes {
+    flex: 1;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.loading {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+.loading::after{
+content:"";
+position: absolute;
+inset: 0;
+
+/* narrow band + fast fade (tight stops) */
+background: linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.096) 50%,
+    transparent 60%,
+    transparent 100%
+);
+
+transform: translateX(-160%);
+animation: shimmer 2.5s ease-in-out infinite;
+}
+
+.content-box.loading > * {
+    visibility: hidden;
+}
+
+/* travel, then pause (gap), then restart */
+@keyframes shimmer{
+0%   { transform: translateX(-160%); }
+60%  { transform: translateX(160%); }  /* the sweep */
+100% { transform: translateX(160%); }  /* pause = gap */
+}
+.pfp {
+    border-radius: 5px;
+    width: 70px;
+}
+.balance {
+    flex: 1;
+    background-color: #181818;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    text-align: center;
+    flex-direction: column;
+    gap: 8px
+}
+.timeline {
+    background: rgb(10, 10, 10);
+    width: 100%;
+    flex: 1;
+    border-radius: 8px
+}
+.info {
+    display: flex;
+    flex: 0.3;
+    justify-content: center;
+    align-items: center;
+}
+#balance {
+    font-size: 20px
+}
